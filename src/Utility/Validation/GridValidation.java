@@ -10,5 +10,6 @@ public class GridValidation {
         return isValid;
     }
 
+
     //TODO VALIDATE IF THE GRID VALUES RE BETWEEN 0 AND 1
 }
