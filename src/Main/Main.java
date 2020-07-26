@@ -2,21 +2,23 @@ package Main;
 
 import Data.Models.GridElement;
 import Data.Models.enums.Colour;
+import Utility.Validation.ConsoleInputReader;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
 
+
+    public static void main(String[] args) throws IOException {
 //        int[][] array = {
 //                {0, 0, 0},
 //                {1, 1, 1},
 //                {0, 0, 0}
 //        };
-
-        //x and y are reversed
-
+        //TODO x and y are reversed
         int[][] array = {
                 {1, 0, 0, 1},
                 {1, 1, 1, 1},
@@ -24,36 +26,59 @@ public class Main {
                 {1, 0, 1, 0}
         };
 
-        List<GridElement> gridElementList = makeGridElements(array);
+//        int[][] array = {
+//                {1, 0},
+//                {1, 1},
+//                {0, 1},
+//                {1, 0}
+//        };
 
-        int generationCounter = 15;
+//        int[][] array = {
+//                {1, 0, 1, 0},
+//                {1, 1, 1, 0},
+//        };
+//
+//        List<GridElement> gridElementList = makeGridElements(array);
+//
+//        int generationCounter = 15;
+//        while (generationCounter >= 0) {
+//            for (int i = 0; i < array.length; i++) {
+//                for (int j = 0; j < array[i].length; j++) {
+//                    GridElement elem = getElementAtRowColumnFromElementList(i, j, gridElementList);
+//                    assert elem != null;
+//                    rules(array, elem);
+//                }
+//            }
+//            // ITERATES TROUGH THE ARRAY
+//            for (int i = 0; i < array.length; i++) {
+//                for (int j = 0; j < array[i].length; j++) {
+//                    // GETS EACH I J ELEMENT
+//                    GridElement elem = getElementAtRowColumnFromElementList(i, j, gridElementList);
+//                    // AND RECALCULATE ITS NEIGHBOURS
+//                    List<Integer> integers = getNeighbours(array, i, j);
+//                    elem.setNeighbours(integers);
+//                }
+//            }
+//            //System.out.print(Arrays.deepToString(array));
+//            generationCounter--;
+//        }
+//      //  printResult(getElementAtRowColumnFromElementList(0,1,gridElementList));
+//        printResult(getElementAtRowColumnFromElementList(2,2,gridElementList));
+//
 
-        while (generationCounter >= 0) {
-            for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < array[i].length; j++) {
+        ConsoleInputReader consoleInputReader = new ConsoleInputReader();
 
-                    GridElement elem = getElementAtRowColumnFromElementList(i, j, gridElementList);
-                    assert elem != null;
-                    rules(array, elem);
-                }
-            }
+        int[] elements = consoleInputReader.readTheSizeOfTheGrid();
+        int[][] grid = consoleInputReader.readTheTheGrid(3, 3);
+        int[] fin = consoleInputReader.readCoordinatesOfTheElementAndGenerationsToIterate();
+        System.out.println(Arrays.toString(elements));
+        System.out.println(Arrays.deepToString(grid));
+        System.out.println(Arrays.toString(fin));
+    }
 
-            System.out.println();
 
-            //TODO ITERATES TROUGH THE ARRAY
-            for (int i = 0; i < array.length; i++) {
-                for (int j = 0; j < array[i].length; j++) {
-                    //TODO GETS EACH I J ELEMENT
-                    GridElement elem = getElementAtRowColumnFromElementList(i, j, gridElementList);
-                    //TODO AND RECALCULATE ITS NEIGHBOURS
-                    List<Integer> integers = getNeighbours(array, i, j);
-                    elem.setNeighbours(integers);
-                }
-            }
-            //System.out.print(Arrays.deepToString(array));
-            generationCounter--;
-        }
-        System.out.println();
+    private static void printResult(GridElement gridElement) {
+        System.out.println(gridElement.getWasGreenCounter());
     }
 
     private static GridElement getElementAtRowColumnFromElementList(int i, int j, List<GridElement> gridElementList) {
@@ -104,22 +129,15 @@ public class Main {
     }
 
     private static void rules(int[][] array, GridElement gridElement) {
-
         List<Integer> neighbours = gridElement.getNeighbours();
-        //TODO SHOULD UPDATE NEW NEIGHBOURS AFTHER RULES APPLICATION
-        //CAN GET NEIGHBOURS FROM THE MATRIX
-
         //Counter for for the number of green neighbours of the index
         int greenCounter = 0;
-
         for (Integer neighbour : neighbours) {
             //Checks if neighbour is Green(1) and increments the  counter
             if (neighbour == 1) {
                 greenCounter++;
             }
         }
-
-        System.out.println();
         if (gridElement.getColour().equals(Colour.RED)) {
             redCellRules(array, gridElement, greenCounter);
         } else if (gridElement.getColour().equals(Colour.GREEN)) {
@@ -129,7 +147,6 @@ public class Main {
 
     private static void greenCellRules(int[][] array, GridElement gridElement, int greenCells) {
         //Remains Green(1);
-        //TODO FIX COUNTER ON EVERY ITERATION
         int incrementForTheGreenCounter = gridElement.getWasGreenCounter();
         incrementForTheGreenCounter++;
         gridElement.setWasGreenCounter(incrementForTheGreenCounter);

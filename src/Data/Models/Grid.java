@@ -5,12 +5,11 @@ public class Grid {
     private int gridWidthCoordinateAxisX;
     private int gridHeightCoordinateAxisY;
     private int[][] theGrid = new int[gridWidthCoordinateAxisX][gridHeightCoordinateAxisY];
-//TODO ADD THE INPUT FROM THE KEYBOARD HERE
 
-
-    public Grid(int gridWidthCoordinateAxisX, int gridHeightCoordinateAxisY, int[][] theGrid) {
-        setGridWidthCoordinateAxisX(gridWidthCoordinateAxisX);
-        setGridHeightCoordinateAxisY(gridHeightCoordinateAxisY);
+    public Grid(int gridWidthCoordinateAxisX, int gridHeightCoordinateAxisY) {
+       // setGridWidthCoordinateAxisX(gridWidthCoordinateAxisX);
+       // setGridHeightCoordinateAxisY(gridHeightCoordinateAxisY);
+       // createGridWithSizeHeightWidth();
     }
 
     public int getGridWidthCoordinateAxisX() {
@@ -27,6 +26,19 @@ public class Grid {
 
     public void setGridHeightCoordinateAxisY(int gridHeightCoordinateAxisY) {
         this.gridHeightCoordinateAxisY = gridHeightCoordinateAxisY;
+    }
+
+    public int[][] getTheGrid() {
+        return this.theGrid;
+    }
+
+    public void setTheGrid(int[][] theGrid) {
+        this.theGrid = theGrid;
+    }
+
+    public void createGridWithSizeHeightWidth(int widthCoordinateAxisX,int heightCoordinateAxisY){
+
+       // setTheGrid();
     }
 
 }
