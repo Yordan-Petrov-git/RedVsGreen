@@ -19,7 +19,6 @@ public class Main {
         };
 
 
-//TODO AT THE MOMENT IT APPLY ITS RULES ONLY ONCE
 
 //        int[][] array = {
 //                {1, 0, 0, 1},
@@ -30,7 +29,7 @@ public class Main {
 
         List<GridElement> gridElementList = makeGridElements(array);
 
-        //TODO IT REPEAT RULES AFHTER THE 1 ST ITERATION AND DOWS NOT RECALCULATE NOTHING !!!
+        //TODO FIX WRONG NEIGHBOUR COUNT ON SECOND ITERATION
         int repeatCounter = 2;
 
         while (repeatCounter > 0) {
@@ -112,7 +111,6 @@ public class Main {
         //Counter for for the number of green neighbours of the index
         int greenCounter = 0;
 
-        //TODO THE CAOUNTER MAYGHT BE WRONG
 
         for (Integer neighbour : neighbours) {
             //Checks if neighbour is Green(1) and increments the  counter
@@ -132,15 +130,8 @@ public class Main {
     }
 
     private static void greenCellRules(int[][] array, GridElement gridElement, int greenCells) {
-
         //Remains Green(1);
         gridElement.setWasGreenCounter(gridElement.getWasGreenCounter() + 1);
-
-//        if (greenCells == 2 || greenCells == 3 || greenCells == 6) {
-//            //Remains Green(1);
-//          //  element.setWasGreenCounter(element.getWasGreenCounter() + 1);
-//        }
-
         if (greenCells == 0 || greenCells == 1 || greenCells == 4 || greenCells == 5 || greenCells == 7 || greenCells == 8) {
             //Shifts colour from Green(1) to Red(0)
             gridElement.setColour(Colour.RED);
@@ -150,7 +141,6 @@ public class Main {
     }
 
     private static void redCellRules(int[][] array, GridElement gridElement, int greenCells) {
-
         if (greenCells == 3 || greenCells == 6) {
             //Shifts colour from Red(0) to Green(1)
             gridElement.setColour(Colour.GREEN);
