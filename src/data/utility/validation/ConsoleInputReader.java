@@ -13,11 +13,15 @@ public class ConsoleInputReader {
 
     /**
      * @param bufferedReader Buffered reader that reads the input from the console.
-     * @param gridValidation Validator for the input.
      */
 
     private final BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(System.in));
+
+    /**
+     * @param gridValidation Validator for the input.
+     */
+
 
     private final GridValidation gridValidation = new GridValidation();
 
@@ -101,7 +105,7 @@ public class ConsoleInputReader {
      * @param arrayToBeParsedToInteger String array to be parsed.
      * @return the parsed array to integer.
      */
-    public int[] arrayIntParser(String[] arrayToBeParsedToInteger) {
+    public int[] arrayIntParser(final String[] arrayToBeParsedToInteger) {
         return Arrays.stream(arrayToBeParsedToInteger).mapToInt(Integer::parseInt).toArray();
     }
 

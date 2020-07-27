@@ -10,15 +10,15 @@ public class InvalidConsoleInputException extends RuntimeException {
     public InvalidConsoleInputException() {
     }
 
-    public InvalidConsoleInputException(String message) {
+    public InvalidConsoleInputException(final String message) {
         super(message);
     }
 
-    public InvalidConsoleInputException(String message, Throwable cause) {
+    public InvalidConsoleInputException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public InvalidConsoleInputException(Throwable cause) {
+    public InvalidConsoleInputException(final Throwable cause) {
         super(cause);
     }
 }

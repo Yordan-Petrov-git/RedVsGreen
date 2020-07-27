@@ -158,7 +158,7 @@ public class GameServiceImpl implements GameService {
      * @param gridElement                  GridElement cell from the Grid.
      * @param numberOfGreenCellsNeighbours Green cells that are neighbours to the gridElement.
      */
-    private static void greenCellRules(final int[][] arrayForTheGrid, GridElement gridElement, final int numberOfGreenCellsNeighbours) {
+    private static void greenCellRules(final int[][] arrayForTheGrid, final GridElement gridElement, final int numberOfGreenCellsNeighbours) {
         //Rules for when the cell is Green(1);
         //Remains Green(1);
         int incrementForTheGreenCounter = gridElement.getWasGreenCounter();

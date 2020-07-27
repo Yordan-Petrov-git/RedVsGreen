@@ -22,19 +22,19 @@ public class GridElementsRepository {
      *
      * @param gridElementList Storage for the Elements of the Grid.
      */
-    public GridElementsRepository(List<GridElement> gridElementList) {
+    public GridElementsRepository(final List<GridElement> gridElementList) {
         setGridElementList(gridElementList);
     }
 
     /**
-     * Empty Constructor
+     * Empty Constructor.
      */
     public GridElementsRepository() {
         setGridElementList(new ArrayList<>());
     }
 
     /**
-     * This method is getter for the element list
+     * This method is getter for the element list.
      *
      * @return list of elements from the repository.
      */
@@ -47,7 +47,7 @@ public class GridElementsRepository {
      *
      * @param gridElementList list of elements for the repository.
      */
-    public void setGridElementList(List<GridElement> gridElementList) {
+    public void setGridElementList(final List<GridElement> gridElementList) {
         this.gridElementList = gridElementList;
     }
 }

@@ -25,8 +25,7 @@ public class GridElement {
     private int column;
     private Colour colour;
     private List<Integer> neighbours = new ArrayList<>();
-
-    int wasGreenCounter = 0;
+    private int wasGreenCounter = 0;
 
     /**
      * @param row        row of the GridElement for the constructor.
@@ -34,7 +33,7 @@ public class GridElement {
      * @param colour     enumeration for the colour of the GridElement for the constructor.
      * @param neighbours list of neighbouring cells of the GridElement for the constructor.
      */
-    public GridElement(int row, int column, int colour, List<Integer> neighbours) {
+    public GridElement(final int row, final int column, final int colour, final List<Integer> neighbours) {
         setRow(row);
         setColumn(column);
         elementAddColour(colour);
@@ -55,7 +54,7 @@ public class GridElement {
      *
      * @param row GridElement row.
      */
-    public void setRow(int row) {
+    public void setRow(final int row) {
         this.row = row;
     }
 
@@ -73,7 +72,7 @@ public class GridElement {
      *
      * @param column GridElement column.
      */
-    public void setColumn(int column) {
+    public void setColumn(final int column) {
         this.column = column;
     }
 
@@ -92,7 +91,7 @@ public class GridElement {
      *
      * @param colour enumeration for the GridElement colour.
      */
-    public void setColour(Colour colour) {
+    public void setColour(final Colour colour) {
         this.colour = colour;
     }
 
@@ -101,7 +100,7 @@ public class GridElement {
      *
      * @param colour int for the colour of the gridElement.
      */
-    public void elementAddColour(int colour) {
+    public void elementAddColour(final int colour) {
         if (colour == 0) {
             setColour(Colour.RED);
         } else {
@@ -123,7 +122,7 @@ public class GridElement {
      *
      * @param neighbours GridElements's neighbours list.
      */
-    public void setNeighbours(List<Integer> neighbours) {
+    public void setNeighbours(final List<Integer> neighbours) {
         this.neighbours = neighbours;
     }
 
@@ -143,7 +142,7 @@ public class GridElement {
      * @param wasGreenCounter counter for how many times GridElement(cell)
      *                        was green the generation cycle is passed.
      */
-    public void setWasGreenCounter(int wasGreenCounter) {
+    public void setWasGreenCounter(final int wasGreenCounter) {
         this.wasGreenCounter = wasGreenCounter;
     }
 
@@ -152,9 +151,9 @@ public class GridElement {
         if (this == o) return true;
         if (!(o instanceof GridElement)) return false;
         GridElement gridElement = (GridElement) o;
-        return column == gridElement.column &&
-                row == gridElement.row &&
-                colour == gridElement.colour;
+        return column == gridElement.column
+                && row == gridElement.row
+                && colour == gridElement.colour;
     }
 
     @Override
@@ -165,10 +164,10 @@ public class GridElement {
 
     @Override
     public String toString() {
-        return "Element{" + "row=" + row +
-                ", column=" + column +
-                ", colour=" + colour +
-                ", wasGreenCounter=" + wasGreenCounter +
-                '}';
+        return "Element{" + "row=" + row
+                + ", column=" + column
+                + ", colour=" + colour
+                + ", wasGreenCounter=" + wasGreenCounter
+                + '}';
     }
 }

@@ -24,7 +24,7 @@ public class Grid {
      * @param gridHeightCoordinateAxisY column dimension for the Grid f
      *                                  or the constructor of the Grid..
      */
-    public Grid(int gridWidthCoordinateAxisX, int gridHeightCoordinateAxisY) {
+    public Grid(final int gridWidthCoordinateAxisX, final int gridHeightCoordinateAxisY) {
         setGridWidthCoordinateAxisX(gridWidthCoordinateAxisX);
         setGridHeightCoordinateAxisY(gridHeightCoordinateAxisY);
         setTheGrid(new int[gridWidthCoordinateAxisX][gridHeightCoordinateAxisY]);
@@ -44,7 +44,7 @@ public class Grid {
      *
      * @param gridWidthCoordinateAxisX grids row.
      */
-    public void setGridWidthCoordinateAxisX(int gridWidthCoordinateAxisX) {
+    public void setGridWidthCoordinateAxisX(final int gridWidthCoordinateAxisX) {
         this.gridWidthCoordinateAxisX = gridWidthCoordinateAxisX;
     }
 
@@ -62,7 +62,7 @@ public class Grid {
      *
      * @param gridHeightCoordinateAxisY grids column.
      */
-    public void setGridHeightCoordinateAxisY(int gridHeightCoordinateAxisY) {
+    public void setGridHeightCoordinateAxisY(final int gridHeightCoordinateAxisY) {
         this.gridHeightCoordinateAxisY = gridHeightCoordinateAxisY;
     }
 
@@ -80,7 +80,7 @@ public class Grid {
      *
      * @param theGrid the grid two dimensional integer array.
      */
-    public void setTheGrid(int[][] theGrid) {
+    public void setTheGrid(final int[][] theGrid) {
         this.theGrid = theGrid;
     }
 

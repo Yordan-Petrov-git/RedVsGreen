@@ -10,15 +10,15 @@ public class InvalidMatrixDimension extends RuntimeException {
     public InvalidMatrixDimension() {
     }
 
-    public InvalidMatrixDimension(String message) {
+    public InvalidMatrixDimension(final String message) {
         super(message);
     }
 
-    public InvalidMatrixDimension(String message, Throwable cause) {
+    public InvalidMatrixDimension(final String message, final Throwable cause) {
         super(message, cause);
     }
 
-    public InvalidMatrixDimension(Throwable cause) {
+    public InvalidMatrixDimension(final Throwable cause) {
         super(cause);
     }
 }
