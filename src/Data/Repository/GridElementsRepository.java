@@ -14,10 +14,15 @@ public class GridElementsRepository {
      * @setGridElementList
      */
 
-    private List<GridElement> gridElementList = new ArrayList<>();
+    private List<GridElement> gridElementList;
+
 
     public GridElementsRepository(List<GridElement> gridElementList) {
         setGridElementList(gridElementList);
+    }
+
+    public GridElementsRepository() {
+        setGridElementList(new ArrayList<>());
     }
 
     public List<GridElement> getGridElementList() {

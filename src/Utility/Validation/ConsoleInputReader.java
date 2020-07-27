@@ -1,7 +1,5 @@
 package Utility.Validation;
 
-import Data.Models.Constants;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,12 +30,14 @@ public class ConsoleInputReader {
     public GridValidation gridValidation = new GridValidation();
 
 
+    /**
+     * @return
+     * @throws IOException
+     */
     public int[] readTheSizeOfTheGrid() throws IOException {
         String[] inputArray = bufferedReader.readLine().split(",\\s*");
-        System.out.println();
         try {
             gridValidation.isTheInputGridValidHeightAnWithNumbers(inputArray);
-            System.out.println();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(-1);
@@ -45,7 +45,20 @@ public class ConsoleInputReader {
         return arrayIntParser(inputArray);
     }
 
+    /**
+     * @param rows
+     * @param columns
+     * @return
+     * @throws IOException
+     */
     public int[][] readTheTheGrid(final int rows, final int columns) throws IOException {
+
+//        try {
+//            gridValidation.isTheInputGridValidDimensions(rows,columns);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            System.exit(-1);
+//        }
 
         int[][] gridInput = new int[rows][columns];
 
@@ -53,8 +66,7 @@ public class ConsoleInputReader {
             String[] inputArray = this.bufferedReader.readLine().split("");
 
             try {
-                Boolean ff =  gridValidation.isTheInputGridValid(inputArray);
-                System.out.println();
+                gridValidation.isTheInputGridValid(inputArray);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.exit(-1);
@@ -68,12 +80,14 @@ public class ConsoleInputReader {
         return gridInput;
     }
 
+    /**
+     * @return
+     * @throws IOException
+     */
     public int[] readCoordinatesOfTheElementAndGenerationsToIterate() throws IOException {
         String[] inputArray = bufferedReader.readLine().split(",\\s*");
         try {
-            //Todo fix validation for cells coordinates generation vlidation works fina
-        Boolean ff =    gridValidation.isTheInputResultCellAndGenerationsValid(inputArray);
-            System.out.println();
+            gridValidation.isTheInputResultCellAndGenerationsValid(inputArray);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(-1);
@@ -81,7 +95,10 @@ public class ConsoleInputReader {
         return arrayIntParser(inputArray);
     }
 
-
+    /**
+     * @param arrayToBeParsedToInteger
+     * @return
+     */
     public int[] arrayIntParser(String[] arrayToBeParsedToInteger) {
         return Arrays.stream(arrayToBeParsedToInteger).mapToInt(Integer::parseInt).toArray();
     }

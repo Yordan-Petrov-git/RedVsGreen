@@ -67,7 +67,7 @@ public class GameServiceImpl implements GameService {
             updateElementsNeighbours(gridElementList, grid);
             generationCounter--;
         }
-        printResult(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[0], inputResultCellAndGenerationsToPass[1], gridElementList));
+        printResult(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1],inputResultCellAndGenerationsToPass[0], gridElementList));
         //----------------------Game main loop-------------------------
     }
 
