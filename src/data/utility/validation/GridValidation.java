@@ -1,12 +1,13 @@
 package data.utility.validation;
 
+import data.constants.Constants;
 import exceptions.InvalidConsoleInputException;
 import exceptions.InvalidMatrixDimension;
 
 /**
  * @author Yordan Petrov
  */
-public class GridValidation {
+public class GridValidation extends Constants {
 
     /**
      * @param rowOfTheGrid Coordinate  for  column(y) of the Grid used for validation.
@@ -24,7 +25,7 @@ public class GridValidation {
      */
     public boolean isTheGridValidHeightAnWith(final int withX, final int heightY) {
         boolean isValid = false;
-        if (withX <= heightY && heightY < 1000) {
+        if (withX <= heightY && heightY < MAXIMUM_NUMBER_OF_COLUMNS) {
             isValid = true;
         }
         if (!isValid) {
@@ -42,7 +43,7 @@ public class GridValidation {
     public boolean isTheInputGridValidHeightAndWithNumbers(final String[] arrayToBeChecked) {
         boolean isValid = false;
 
-        if (!arrayLengthChecker(arrayToBeChecked, 2)) {
+        if (!arrayLengthChecker(arrayToBeChecked, WIDTH_AND_HEIGHT_OF_THE_GRID)) {
             isValid = false;
             throw new InvalidMatrixDimension("Dimension of the matrix should be only two numbers");
         } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
@@ -102,7 +103,7 @@ public class GridValidation {
     public boolean isTheInputResultCellAndGenerationsValid(final String[] arrayToBeChecked) {
         boolean isValid = false;
 
-        if (!arrayLengthChecker(arrayToBeChecked, 3)) {
+        if (!arrayLengthChecker(arrayToBeChecked, ROW_CELL_AND_GENERATIONS_FOR_RESULT)) {
             isValid = false;
             throw new InvalidMatrixDimension("Position of the Cell should be only two numbers"
                     + " followed by the number of generations to pass.");

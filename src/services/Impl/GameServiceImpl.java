@@ -1,5 +1,6 @@
 package services.Impl;
 
+import data.constants.Constants;
 import data.models.Grid;
 import data.models.GridElement;
 import data.models.enums.Colour;
@@ -16,8 +17,7 @@ import java.util.Objects;
  * @author Yordan Petrov
  */
 
-
-public class GameServiceImpl implements GameService {
+public class GameServiceImpl extends Constants implements GameService {
 
     /**
      * This method runs the program.
