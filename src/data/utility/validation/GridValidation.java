@@ -45,7 +45,7 @@ public class GridValidation extends Constants {
 
         if (!arrayLengthChecker(arrayToBeChecked, WIDTH_AND_HEIGHT_OF_THE_GRID)) {
             isValid = false;
-            throw new InvalidMatrixDimension("Dimension of the matrix should be only two numbers");
+            throw new InvalidMatrixDimension("Dimension of the matrix should be only two positive numbers");
         } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
             isValid = true;
         }
@@ -56,7 +56,7 @@ public class GridValidation extends Constants {
         }
 
         if (!isValid) {
-            throw new InvalidMatrixDimension("Dimension of the matrix should be coma separated numbers");
+            throw new InvalidMatrixDimension("Dimension of the matrix should be coma separated positive numbers");
         }
         return isValid;
     }
@@ -73,23 +73,10 @@ public class GridValidation extends Constants {
             isValid = true;
         }
         if (!isValid) {
-            throw new InvalidConsoleInputException("Cells of the Grid should be only 1(Green) or 0(Red).");
+            throw new InvalidConsoleInputException("Cells of the Grid should be only positive 1(Green) or 0(Red).");
         }
         return isValid;
     }
-
-//    public boolean isTheInputGridValidDimensions(int x, int y) {
-//        boolean isValid = false;
-//        if (rowOfTheGrid == x && columnsOfTheGrid == y) {
-//            isValid = true;
-//        }
-//        if (!isValid) {
-//            throw new InvalidConsoleInputException(
-//                    String.format("Dimensions of the Grid should be" +
-//                            " as specified : rows: (%s) columns (%s) .", rowOfTheGrid, columnsOfTheGrid));
-//        }
-//        return isValid;
-//    }
 
     /**
      * This method validates if the input cell's coordinates
@@ -105,14 +92,14 @@ public class GridValidation extends Constants {
 
         if (!arrayLengthChecker(arrayToBeChecked, ROW_CELL_AND_GENERATIONS_FOR_RESULT)) {
             isValid = false;
-            throw new InvalidMatrixDimension("Position of the Cell should be only two numbers"
+            throw new InvalidMatrixDimension("Position of the Cell should be only two positive numbers"
                     + " followed by the number of generations to pass.");
         } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
             isValid = true;
         }
         if (!isValid) {
             throw new InvalidConsoleInputException("Position of the Cell and number of Generations to"
-                    + " pass should be only numbers.");
+                    + " pass should be only positive numbers.");
         }
         return isValid;
     }
