@@ -4,32 +4,26 @@ import data.models.Grid;
 import data.models.GridElement;
 import data.models.enums.Colour;
 import data.repository.GridElementsRepository;
-import services.GameService;
 import data.utility.validation.ConsoleInputReader;
+import services.GameService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Yordan Petrov
+ */
+
+
 public class GameServiceImpl implements GameService {
 
     /**
-     * @author Yordan Petrov
-     * @run Start the Program.
-     * @updateElementsNeighbours Method that updates
-     * @applyRulesToTheGrid
-     * @getElementAtPositionColour
-     * @getNeighbours
-     * @applyRules
-     * @greenCellRules
-     * @redCellRules
-     * @printResult
-     * @getElementAtRowColumnFromElementList
-     * @makeGridElements
+     * This method runs the program.
+     *
+     * @throws IOException Exception for the console input.
      */
-
-
     @Override
     public void run() throws IOException {
 
@@ -57,32 +51,39 @@ public class GameServiceImpl implements GameService {
             updateElementsNeighbours(gridElementList, grid);
             generationCounter--;
         }
-        printResult(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1], inputResultCellAndGenerationsToPass[0], gridElementList));
+        printResult(Objects.requireNonNull(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1],
+                inputResultCellAndGenerationsToPass[0], gridElementList)));
         //----------------------Game main loop-------------------------
     }
 
     /**
-     * @param gridElementList
-     * @param grid
+     * This method updates the GridElement's neighbour cells colours.
+     *
+     * @param gridElementList List of Elements of the grid to be updated.
+     * @param grid            The Grid.
      */
-    private void updateElementsNeighbours(List<GridElement> gridElementList, Grid grid) {
-        //Update NEIGHBOURS OF the  Elements
-        // ITERATES TROUGH THE ARRAY
+    private void updateElementsNeighbours(final List<GridElement> gridElementList, final Grid grid) {
+        //Iterates trough the grid
         for (int i = 0; i < grid.getTheGrid().length; i++) {
             for (int j = 0; j < grid.getTheGrid()[i].length; j++) {
-                // GETS EACH I J ELEMENT
+                //Gets each cell
                 GridElement elem = getElementAtRowColumnFromElementList(i, j, gridElementList);
-                // AND RECALCULATE ITS NEIGHBOURS
+                //Update neighbours of each Element
+                assert elem != null;
                 elem.setNeighbours(getNeighbours(grid.getTheGrid(), i, j));
             }
         }
     }
 
     /**
-     * @param gridElementList
-     * @param grid
+     * This method iterates trough all of the grids cells and apples all the rules.
+     *
+     * @param gridElementList List of all the GridElement's created for each Grid cell.
+     * @param grid            The Grid.
      */
-    private void applyRulesToTheGrid(List<GridElement> gridElementList, Grid grid) {
+    private void applyRulesToTheGrid(final List<GridElement> gridElementList, final Grid grid) {
+        //Method for iterating trough the grid and
+        // applying the rules for each cell according to its colour.
         for (int i = 0; i < grid.getTheGrid().length; i++) {
             for (int j = 0; j < grid.getTheGrid()[i].length; j++) {
                 applyRules(grid.getTheGrid(), Objects.requireNonNull(getElementAtRowColumnFromElementList(i, j, gridElementList)));
@@ -91,30 +92,35 @@ public class GameServiceImpl implements GameService {
     }
 
     /**
-     * @param array
-     * @param i
-     * @param j
-     * @return
+     * This method gets the colour of the selected GridElement.
+     *
+     * @param arrayForTheGrid Array containing all the cells of the Grid.
+     * @param i               row for the selected Grid.
+     * @param j               column for the selected Grid.
+     * @return integerArray for Colour of the GridElement.
      */
-    private static int getElementAtPositionColour(int[][] array, int i, int j) {
-        return array[i][j];
+    private static int getElementAtPositionColour(final int[][] arrayForTheGrid, final int i, final int j) {
+        return arrayForTheGrid[i][j];
     }
 
     /**
-     * @param array
-     * @param i
-     * @param j
-     * @return
+     * This method gets the neighbours of  the selected GridElement
+     * at certain cell's coordinates(x,y).
+     *
+     * @param arrayForTheGrid Array containing all the cells of the Grid.
+     * @param i               row for the selected GridElement.
+     * @param j               column for the selected GridElement.
+     * @return list of Neighbours of the GridElement.
      */
-    public static List<Integer> getNeighbours(int[][] array, int i, int j) {
-        //Gets All neighbouring numbers around the index
+    public static List<Integer> getNeighbours(final int[][] arrayForTheGrid, final int i, final int j) {
+        //Gets All neighbouring numbers around the index at cell(i,j) from the Grid.
         List<Integer> neighboursList = new ArrayList<>();
-        for (int x = Math.max(0, i - 1); x <= Math.min(i + 1, array.length); x++) {
-            for (int y = Math.max(0, j - 1); y <= Math.min(j + 1, array[i].length); y++) {
-                if (x >= 0 && y >= 0 && x < array.length && y < array[i].length) {
+        for (int x = Math.max(0, i - 1); x <= Math.min(i + 1, arrayForTheGrid.length); x++) {
+            for (int y = Math.max(0, j - 1); y <= Math.min(j + 1, arrayForTheGrid[i].length); y++) {
+                if (x >= 0 && y >= 0 && x < arrayForTheGrid.length && y < arrayForTheGrid[i].length) {
                     if (x != i || y != j) {
                         //Add them to the list with neighbours
-                        neighboursList.add(array[x][y]);
+                        neighboursList.add(arrayForTheGrid[x][y]);
                     }
                 }
             }
@@ -123,10 +129,12 @@ public class GameServiceImpl implements GameService {
     }
 
     /**
-     * @param array
-     * @param gridElement
+     * This method method applies the rules.
+     *
+     * @param arrayForTheGrid Array containing all the cells of the Grid.
+     * @param gridElement     GridElement cell from the Grid.
      */
-    private static void applyRules(int[][] array, GridElement gridElement) {
+    private static void applyRules(final int[][] arrayForTheGrid, final GridElement gridElement) {
         List<Integer> neighbours = gridElement.getNeighbours();
         //Counter for for the number of green neighbours of the index
         int greenCounter = 0;
@@ -137,60 +145,74 @@ public class GameServiceImpl implements GameService {
             }
         }
         if (gridElement.getColour().equals(Colour.RED)) {
-            redCellRules(array, gridElement, greenCounter);
+            redCellRules(arrayForTheGrid, gridElement, greenCounter);
         } else if (gridElement.getColour().equals(Colour.GREEN)) {
-            greenCellRules(array, gridElement, greenCounter);
+            greenCellRules(arrayForTheGrid, gridElement, greenCounter);
         }
     }
 
     /**
-     * @param array
-     * @param gridElement
-     * @param greenCells
+     * This method applies the rules to the Grid for the green cells.
+     *
+     * @param arrayForTheGrid              Array containing all the cells of the Grid.
+     * @param gridElement                  GridElement cell from the Grid.
+     * @param numberOfGreenCellsNeighbours Green cells that are neighbours to the gridElement.
      */
-    private static void greenCellRules(int[][] array, GridElement gridElement, int greenCells) {
+    private static void greenCellRules(final int[][] arrayForTheGrid, GridElement gridElement, final int numberOfGreenCellsNeighbours) {
+        //Rules for when the cell is Green(1);
         //Remains Green(1);
         int incrementForTheGreenCounter = gridElement.getWasGreenCounter();
         incrementForTheGreenCounter++;
         gridElement.setWasGreenCounter(incrementForTheGreenCounter);
 
-        if (greenCells == 0 || greenCells == 1 || greenCells == 4 || greenCells == 5 || greenCells == 7 || greenCells == 8) {
-            //Shifts colour from Green(1) to Red(0)
+        if (numberOfGreenCellsNeighbours == 0 || numberOfGreenCellsNeighbours == 1 || numberOfGreenCellsNeighbours == 4
+                || numberOfGreenCellsNeighbours == 5 || numberOfGreenCellsNeighbours == 7 || numberOfGreenCellsNeighbours == 8) {
+            //Shifts colour from Green(1) to Red(0) for the GridElement.
             gridElement.setColour(Colour.RED);
-            array[gridElement.getRow()][gridElement.getColumn()] = 0;
+            //Shifting the Grid cell value.
+            arrayForTheGrid[gridElement.getRow()][gridElement.getColumn()] = 0;
         }
     }
 
 
     /**
-     * @param array
-     * @param gridElement
-     * @param greenCells
+     * This method applies the rules to the Grid for the red cells.
+     *
+     * @param arrayForTheGrid              Array containing all the cells of the Grid.
+     * @param gridElement                  GridElement cell from the Grid.
+     * @param numberOfGreenCellsNeighbours Green cells that are neighbours to the gridElement.
      */
-    private static void redCellRules(int[][] array, GridElement gridElement, int greenCells) {
-        if (greenCells == 3 || greenCells == 6) {
+    private static void redCellRules(final int[][] arrayForTheGrid, final GridElement gridElement, final int numberOfGreenCellsNeighbours) {
+        //Rules for when the cell is Red(0) for the GridElement.
+        if (numberOfGreenCellsNeighbours == 3 || numberOfGreenCellsNeighbours == 6) {
             //Shifts colour from Red(0) to Green(1)
             gridElement.setColour(Colour.GREEN);
-            array[gridElement.getRow()][gridElement.getColumn()] = 1;
+            //Shifting the Grid cell value.
+            arrayForTheGrid[gridElement.getRow()][gridElement.getColumn()] = 1;
         }
     }
 
     /**
-     * @param gridElement
+     * This method prints the result of the calculation.
+     *
+     * @param gridElement GridElement to print its GreenCounter
+     *                    number(the counter for how many Generations this specific GridElement was green).
      */
-    private static void printResult(GridElement gridElement) {
+    private static void printResult(final GridElement gridElement) {
         System.out.print(String.format("# expected result: %s", gridElement.getWasGreenCounter()));
     }
 
     /**
-     * @param i
-     * @param j
-     * @param gridElementList
-     * @return
+     * This method gets GridElement from cell at certain Grid coordinates(x(i),y(j)).
+     *
+     * @param i               row for the selected GridElement.
+     * @param j               column for the selected GridElement.
+     * @param gridElementList List of all the GridElement's created for each Grid cell.
+     * @return GridElement for the coordinates(row(x),column(y)) of the selected cell.
      */
-    private static GridElement getElementAtRowColumnFromElementList(int i, int j, List<GridElement> gridElementList) {
-        int row = 0;
-        int column = 0;
+    private static GridElement getElementAtRowColumnFromElementList(final int i, final int j, final List<GridElement> gridElementList) {
+        int row;
+        int column;
         for (GridElement gridElement : gridElementList) {
             row = gridElement.getRow();
             column = gridElement.getColumn();
@@ -202,18 +224,21 @@ public class GameServiceImpl implements GameService {
     }
 
     /**
-     * @param array
-     * @return
+     * This method iterates trough the Grid and initializes
+     * new GridElement Object for each cell.
+     *
+     * @param arrayForTheGrid Array containing all the cells of the Grid.
+     * @return List of all the GridElement's created for each Grid cell.
      */
-    private static List<GridElement> makeGridElements(int[][] array) {
+    private static List<GridElement> makeGridElements(final int[][] arrayForTheGrid) {
+        //Creates Object of Grid Element Class for each cell in the grid
         List<GridElement> gridElementList = new ArrayList<>();
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
+        for (int i = 0; i < arrayForTheGrid.length; i++) {
+            for (int j = 0; j < arrayForTheGrid[i].length; j++) {
                 //Creates new ElementObject for each element in the grid
                 GridElement gridElement = new GridElement(i, j,
-                        getElementAtPositionColour(array, i, j),
-                        getNeighbours(array, i, j));
-
+                        getElementAtPositionColour(arrayForTheGrid, i, j),
+                        getNeighbours(arrayForTheGrid, i, j));
                 gridElementList.add(gridElement);
             }
         }

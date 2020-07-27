@@ -1,5 +1,9 @@
 package exceptions;
 
+/**
+ * @author Yordan Petrov
+ */
+
 
 public class InvalidConsoleInputException extends RuntimeException {
 

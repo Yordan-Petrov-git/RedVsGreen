@@ -5,41 +5,47 @@ import data.models.GridElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridElementsRepository {
-    /**
-     * @author Yordan Petrov
-     * @param gridElementList Storage for the Elements of the Grid
-     * @GridElementsRepository
-     * @getGridElementList
-     * @setGridElementList
-     */
+/**
+ * @author Yordan Petrov
+ */
 
+
+public class GridElementsRepository {
+
+    /**
+     * @param gridElementList Storage for the Elements of the Grid.
+     */
     private List<GridElement> gridElementList;
 
-
     /**
-     * @param gridElementList
+     * Constructor with StorageList.
+     *
+     * @param gridElementList Storage for the Elements of the Grid.
      */
     public GridElementsRepository(List<GridElement> gridElementList) {
         setGridElementList(gridElementList);
     }
 
     /**
-     *
+     * Empty Constructor
      */
     public GridElementsRepository() {
         setGridElementList(new ArrayList<>());
     }
 
     /**
-     * @return
+     * This method is getter for the element list
+     *
+     * @return list of elements from the repository.
      */
     public List<GridElement> getGridElementList() {
         return this.gridElementList;
     }
 
     /**
-     * @param gridElementList
+     * This method is setter for the element list.
+     *
+     * @param gridElementList list of elements for the repository.
      */
     public void setGridElementList(List<GridElement> gridElementList) {
         this.gridElementList = gridElementList;

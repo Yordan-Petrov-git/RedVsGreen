@@ -1,12 +1,15 @@
 package data.models;
 
+/**
+ * @author Yordan Petrov
+ */
+
 public class Grid {
 
     /**
-     * @author Yordan Petrov
-     * @param gridWidthCoordinateAxisX
-     * @param gridHeightCoordinateAxisY
-     * @param theGrid
+     * @param gridWidthCoordinateAxisX row dimension for the Grid.
+     * @param gridHeightCoordinateAxisY column dimension for the Grid.
+     * @param theGrid Array for the Grid.
      */
 
     private int gridWidthCoordinateAxisX;
@@ -14,8 +17,12 @@ public class Grid {
     private int[][] theGrid;
 
     /**
-     * @param gridWidthCoordinateAxisX
-     * @param gridHeightCoordinateAxisY
+     * Constructor for the Grid
+     *
+     * @param gridWidthCoordinateAxisX  row dimension for the Grid
+     *                                  for the constructor of the Grid.
+     * @param gridHeightCoordinateAxisY column dimension for the Grid f
+     *                                  or the constructor of the Grid..
      */
     public Grid(int gridWidthCoordinateAxisX, int gridHeightCoordinateAxisY) {
         setGridWidthCoordinateAxisX(gridWidthCoordinateAxisX);
@@ -24,42 +31,54 @@ public class Grid {
     }
 
     /**
-     * @return
+     * This method is getter for the rows.
+     *
+     * @return grids row.
      */
     public int getGridWidthCoordinateAxisX() {
         return this.gridWidthCoordinateAxisX;
     }
 
     /**
-     * @param gridWidthCoordinateAxisX
+     * This method is setter for the rows.
+     *
+     * @param gridWidthCoordinateAxisX grids row.
      */
     public void setGridWidthCoordinateAxisX(int gridWidthCoordinateAxisX) {
         this.gridWidthCoordinateAxisX = gridWidthCoordinateAxisX;
     }
 
     /**
-     * @return
+     * This method is getter for the columns.
+     *
+     * @return grids column.
      */
     public int getGridHeightCoordinateAxisY() {
         return this.gridHeightCoordinateAxisY;
     }
 
     /**
-     * @param gridHeightCoordinateAxisY
+     * This method is setter for the columns.
+     *
+     * @param gridHeightCoordinateAxisY grids column.
      */
     public void setGridHeightCoordinateAxisY(int gridHeightCoordinateAxisY) {
         this.gridHeightCoordinateAxisY = gridHeightCoordinateAxisY;
     }
 
     /**
-     * @return
+     * This method is getter for the Grid.
+     *
+     * @return the grid two dimensional integer array.
      */
     public int[][] getTheGrid() {
         return this.theGrid;
     }
 
     /**
-     * @param theGrid
+     * This method is setter for the Grid.
+     *
+     * @param theGrid the grid two dimensional integer array.
      */
     public void setTheGrid(int[][] theGrid) {
         this.theGrid = theGrid;

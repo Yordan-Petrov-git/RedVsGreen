@@ -2,9 +2,15 @@ package services;
 
 import java.io.IOException;
 
+/**
+ * @author Yordan Petrov
+ */
 
 public interface GameService {
 
-    public  void run() throws IOException;
+    /**
+     * @throws IOException Exceptions for the console input.
+     */
+    void run() throws IOException;
 
 }

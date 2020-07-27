@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Main {
     /**
      * @param args Variable arguments.
-     * @throws IOException
+     * @throws IOException Exceptions for the console input.
      */
     public static void main(final String[] args) throws IOException {
         GameServiceImpl gameService = new GameServiceImpl();

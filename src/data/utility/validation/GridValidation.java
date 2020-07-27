@@ -8,13 +8,19 @@ import exceptions.InvalidMatrixDimension;
  */
 public class GridValidation {
 
+    /**
+     * @param rowOfTheGrid Coordinate  for  column(y) of the Grid used for validation.
+     * @param columnsOfTheGrid Coordinate  for  column(y) of the Grid used for validation.
+     */
     int rowOfTheGrid;
     int columnsOfTheGrid;
 
     /**
-     * @param withX   Coordinate  for  row(x) of the Grid
-     * @param heightY Coordinate  for  column(y) of the Grid
-     * @return the validated output
+     * This method validates if the input grid dimensions are correct.
+     *
+     * @param withX   Coordinate  for  row(x) of the Grid.
+     * @param heightY Coordinate  for  column(y) of the Grid.
+     * @return the validated output withX <= heightY < 1000.
      */
     public boolean isTheGridValidHeightAnWith(int withX, int heightY) {
         boolean isValid = false;
@@ -28,16 +34,18 @@ public class GridValidation {
     }
 
     /**
-     * @param arrayToBeChecked
-     * @return
+     * This method validates if the input grid dimensions are correct.
+     *
+     * @param arrayToBeChecked The Array to be validated.
+     * @return result of validation is the array input dimensions (x,y) are correct.
      */
-    public boolean isTheInputGridValidHeightAnWithNumbers(String[] arrayToBeChecked) {
+    public boolean isTheInputGridValidHeightAndWithNumbers(String[] arrayToBeChecked) {
         boolean isValid = false;
 
         if (!arrayLengthChecker(arrayToBeChecked, 2)) {
             isValid = false;
             throw new InvalidMatrixDimension("Dimension of the matrix should be only two numbers");
-        } else if (arrayValidator(arrayToBeChecked, "\\d*")) {
+        } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
             isValid = true;
         }
 
@@ -53,12 +61,14 @@ public class GridValidation {
     }
 
     /**
-     * @param arrayToBeChecked
-     * @return
+     * This method validates if the input grid values are correct.
+     *
+     * @param arrayToBeChecked The Array to be validated.
+     * @return result of validation is the array input values 0 and 1's .
      */
     public boolean isTheInputGridValid(String[] arrayToBeChecked) {
         boolean isValid = false;
-        if (arrayValidator(arrayToBeChecked, "[0,1]")) {
+        if (arrayRegExValidator(arrayToBeChecked, "[0,1]")) {
             isValid = true;
         }
         if (!isValid) {
@@ -81,8 +91,13 @@ public class GridValidation {
 //    }
 
     /**
-     * @param arrayToBeChecked
-     * @return
+     * This method validates if the input cell's coordinates
+     * for calculating how many times the cell was green and
+     * the generations to pass.
+     *
+     * @param arrayToBeChecked The Array to be validated.
+     * @return result of validation for the Cell that the
+     * result should be calculated and the number of generations to pass.
      */
     public boolean isTheInputResultCellAndGenerationsValid(String[] arrayToBeChecked) {
         boolean isValid = false;
@@ -91,7 +106,7 @@ public class GridValidation {
             isValid = false;
             throw new InvalidMatrixDimension("Position of the Cell should be only two numbers" +
                     " followed by the number of generations to pass.");
-        } else if (arrayValidator(arrayToBeChecked, "\\d*")) {
+        } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
             isValid = true;
         }
         if (!isValid) {
@@ -102,9 +117,11 @@ public class GridValidation {
     }
 
     /**
-     * @param arrayToBeChecked
-     * @param checkedLength
-     * @return
+     * This method that checks if the array is certain length.
+     *
+     * @param arrayToBeChecked The Array to be validated.
+     * @param checkedLength    the length of the array.
+     * @return result if the passed array is the checked length.
      */
     public boolean arrayLengthChecker(String[] arrayToBeChecked, int checkedLength) {
         boolean isValid;
@@ -113,15 +130,18 @@ public class GridValidation {
     }
 
     /**
-     * @param arrayToBeChecked
-     * @param matcherRegEx
-     * @return
+     * This method that checks for each element of the array
+     * if the element is maced with certain regex.
+     *
+     * @param arrayToBeChecked The Array to be validated.
+     * @param matcherRegEx     String for the RegularExpression for the validation.
+     * @return result of the validation if the array is valid.
      */
-    public boolean arrayValidator(String[] arrayToBeChecked, String matcherRegEx) {
+    public boolean arrayRegExValidator(String[] arrayToBeChecked, String matcherRegEx) {
         boolean isValid = false;
         for (String cell : arrayToBeChecked) {
             isValid = cell.matches(matcherRegEx);
-            if (isValid == false) {
+            if (!isValid) {
                 break;
             }
         }

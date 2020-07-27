@@ -5,24 +5,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+/**
+ * @author Yordan Petrov
+ */
+
 public class ConsoleInputReader {
 
     /**
-     * @author Yordan Petrov
      * @param bufferedReader Buffered reader that reads the input from the console.
-     * @param gridValidation Validator  for the input.
-     * @param gridValidation Validator  for the Grid.
-     * @readTheSizeOfTheGrid Method for reading the input from the console,
-     * for the coordinates:(width(row(x)),height(column(y))) of the Grid.
-     * @readTheTheGrid Method for reading the input from the console, for
-     * the values for each coordinates:(width(row(x)),height(column(y))) of the grid.
-     * @readCoordinatesOfTheElementAndGenerationsToIterate Method for
-     * reading the input from the console,
-     * for the Element(cell from the input's array three values(0,0(row);0,1(column);0,2(NumberOfGenerations)))'s
-     * position coordinates:(width(row(x(0,0)),height(column(y(0,1)))) of the Grid that the Number of times
-     * that it was with value 1(Green)
-     * and the number of Generations(N) that have to pass witch is cell(0,2).
-     * @arrayIntParser Parses the input array from String to Integer.
+     * @param gridValidation Validator for the input.
      */
 
     private final BufferedReader bufferedReader =
@@ -32,13 +23,15 @@ public class ConsoleInputReader {
 
 
     /**
-     * @return
-     * @throws IOException
+     * This method reads the size of the grid from the console input.
+     *
+     * @return result of the input for the size of the Grid.
+     * @throws IOException If an I/O error occurs for the input from the bufferedReader.
      */
     public int[] readTheSizeOfTheGrid() throws IOException {
         String[] inputArray = bufferedReader.readLine().split(",\\s*");
         try {
-            gridValidation.isTheInputGridValidHeightAnWithNumbers(inputArray);
+            gridValidation.isTheInputGridValidHeightAndWithNumbers(inputArray);
             gridValidation.isTheGridValidHeightAnWith(Integer.parseInt(inputArray[0]), Integer.parseInt(inputArray[1]));
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -48,10 +41,12 @@ public class ConsoleInputReader {
     }
 
     /**
-     * @param rows
-     * @param columns
-     * @return
-     * @throws IOException
+     * This method reads the values for the grid from the console input.
+     *
+     * @param rows    length of the row of the input for the grid.
+     * @param columns height of the row of the input for the grid.
+     * @return result of the filled grid from the console.
+     * @throws IOException If an I/O error occurs for the input from the bufferedReader.
      */
     public int[][] readTheTheGrid(final int rows, final int columns) throws IOException {
 
@@ -83,8 +78,11 @@ public class ConsoleInputReader {
     }
 
     /**
-     * @return
-     * @throws IOException
+     * This method reads coordinates(x,y) of the cell and how many generations to pass.
+     *
+     * @return result of the input for witch cell
+     * to calculate the result and for how many generations.
+     * @throws IOException If an I/O error occurs for the input from the bufferedReader.
      */
     public int[] readCoordinatesOfTheElementAndGenerationsToIterate() throws IOException {
         String[] inputArray = bufferedReader.readLine().split(",\\s*");
@@ -98,8 +96,10 @@ public class ConsoleInputReader {
     }
 
     /**
-     * @param arrayToBeParsedToInteger
-     * @return
+     * This method parses string array to integer array.
+     *
+     * @param arrayToBeParsedToInteger String array to be parsed.
+     * @return the parsed array to integer.
      */
     public int[] arrayIntParser(String[] arrayToBeParsedToInteger) {
         return Arrays.stream(arrayToBeParsedToInteger).mapToInt(Integer::parseInt).toArray();
