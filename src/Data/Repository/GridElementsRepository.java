@@ -6,5 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GridElementsRepository {
-    List<GridElement> gridElementList = new ArrayList<>();
+    private List<GridElement> gridElementList = new ArrayList<>();
+
+    public GridElementsRepository(List<GridElement> gridElementList) {
+        setGridElementList(gridElementList);
+    }
+
+    public List<GridElement> getGridElementList() {
+        return this.gridElementList;
+    }
+
+    public void setGridElementList(List<GridElement> gridElementList) {
+        this.gridElementList = gridElementList;
+    }
 }

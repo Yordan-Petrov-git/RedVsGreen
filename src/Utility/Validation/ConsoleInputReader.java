@@ -9,24 +9,29 @@ public class ConsoleInputReader {
 
     public BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-   public  int[] readTheSizeOfTheGrid() throws IOException {
-       return Arrays.stream(bufferedReader.readLine().split(",\\s*")).mapToInt(Integer::parseInt).toArray();
-   }
+    public int[] readTheSizeOfTheGrid() throws IOException {
+        return Arrays.stream(bufferedReader.readLine().
+                split(",\\s*")).mapToInt(Integer::parseInt).toArray();
+    }
 
-    public int[][] readTheTheGrid(int rows,int columns) throws IOException {
-        int[][] twoDm = new int[rows][columns];
+    public int[][] readTheTheGrid(int rows, int columns) throws IOException {
+        int[][] gridInput = new int[rows][columns];
         int i, j;
-        for (i = 0; i < twoDm.length; i++) {
-            String[] line = this.bufferedReader.readLine().split("");
-            for (j = 0; j < twoDm[i].length; j++) {
-                twoDm[i][j] = Integer.parseInt(line[j]);
+        for (i = 0; i < gridInput.length; i++) {
+            //  String[] line = this.bufferedReader.readLine().split("");
+            int[] line = Arrays.stream(bufferedReader.readLine()
+                    .split("")).mapToInt(Integer::parseInt).toArray();
+            for (j = 0; j < gridInput[i].length; j++) {
+                // gridInput[i][j] = Integer.parseInt(line[j]);
+                gridInput[i][j] = line[j];
             }
         }
-        return twoDm;
+        return gridInput;
     }
 
     public int[] readCoordinatesOfTheElementAndGenerationsToIterate() throws IOException {
-        return Arrays.stream(bufferedReader.readLine().split(",\\s*")).mapToInt(Integer::parseInt).toArray();
+        return Arrays.stream(bufferedReader.readLine()
+                .split(",\\s*")).mapToInt(Integer::parseInt).toArray();
     }
 
 }
