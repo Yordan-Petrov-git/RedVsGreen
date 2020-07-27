@@ -2,6 +2,13 @@ package Data.Models;
 
 public class Grid {
 
+    /**
+     * @author Yordan Petrov
+     * @param gridWidthCoordinateAxisX
+     * @param gridHeightCoordinateAxisY
+     * @param theGrid
+     */
+
     private int gridWidthCoordinateAxisX;
     private int gridHeightCoordinateAxisY;
     private int[][] theGrid;

@@ -8,6 +8,16 @@ import java.util.Objects;
 
 public class GridElement {
 
+    /**
+     * @author Yordan Petrov
+     * @param row
+     * @param column
+     * @param colour
+     * @param neighbours
+     * @param wasGreenCounter This is the counter for the how many times
+     * after the four Rules are applied certain element from the Grid was green;
+     */
+
     private int row;
     private int column;
     private Colour colour;

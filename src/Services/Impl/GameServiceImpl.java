@@ -14,6 +14,32 @@ import java.util.Objects;
 
 public class GameServiceImpl implements GameService {
 
+    /**
+     * @author Yordan Petrov
+     * @run
+     *
+     * @updateElementsNeighbours
+     *
+     * @applyRulesToTheGrid
+     *
+     * @getElementAtPositionColour
+     *
+     * @getNeighbours
+     *
+     * @applyRules
+     *
+     * @greenCellRules
+     *
+     * @redCellRules
+     *
+     * @printResult
+     *
+     * @getElementAtRowColumnFromElementList
+     *
+     * @makeGridElements
+     */
+
+
     @Override
     public void run() throws IOException {
 
@@ -115,6 +141,7 @@ public class GameServiceImpl implements GameService {
             array[gridElement.getRow()][gridElement.getColumn()] = 0;
         }
     }
+
 
     private static void redCellRules(int[][] array, GridElement gridElement, int greenCells) {
         if (greenCells == 3 || greenCells == 6) {
