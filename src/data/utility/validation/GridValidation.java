@@ -1,7 +1,7 @@
-package Utility.Validation;
+package data.utility.validation;
 
-import Exceptions.InvalidConsoleInputException;
-import Exceptions.InvalidMatrixDimension;
+import exceptions.InvalidConsoleInputException;
+import exceptions.InvalidMatrixDimension;
 
 /**
  * @author Yordan Petrov
@@ -22,7 +22,7 @@ public class GridValidation {
             isValid = true;
         }
         if (!isValid) {
-            throw new InvalidMatrixDimension("Dimension of the matrix should be x <= y = 1000 ");
+            throw new InvalidMatrixDimension("Dimension of the matrix should be x <= y < 1000 ");
         }
         return isValid;
     }

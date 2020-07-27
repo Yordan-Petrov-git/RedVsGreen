@@ -1,4 +1,4 @@
-package Data.Models.enums;
+package data.models.enums;
 
 public enum Colour {
 

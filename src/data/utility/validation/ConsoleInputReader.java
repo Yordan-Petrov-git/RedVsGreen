@@ -1,4 +1,4 @@
-package Utility.Validation;
+package data.utility.validation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +11,7 @@ public class ConsoleInputReader {
      * @author Yordan Petrov
      * @param bufferedReader Buffered reader that reads the input from the console.
      * @param gridValidation Validator  for the input.
+     * @param gridValidation Validator  for the Grid.
      * @readTheSizeOfTheGrid Method for reading the input from the console,
      * for the coordinates:(width(row(x)),height(column(y))) of the Grid.
      * @readTheTheGrid Method for reading the input from the console, for
@@ -24,10 +25,10 @@ public class ConsoleInputReader {
      * @arrayIntParser Parses the input array from String to Integer.
      */
 
-    public BufferedReader bufferedReader =
+    private final BufferedReader bufferedReader =
             new BufferedReader(new InputStreamReader(System.in));
 
-    public GridValidation gridValidation = new GridValidation();
+    private final GridValidation gridValidation = new GridValidation();
 
 
     /**
@@ -38,6 +39,7 @@ public class ConsoleInputReader {
         String[] inputArray = bufferedReader.readLine().split(",\\s*");
         try {
             gridValidation.isTheInputGridValidHeightAnWithNumbers(inputArray);
+            gridValidation.isTheGridValidHeightAnWith(Integer.parseInt(inputArray[0]), Integer.parseInt(inputArray[1]));
         } catch (Exception e) {
             System.out.println(e.getMessage());
             System.exit(-1);

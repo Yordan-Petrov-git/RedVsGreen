@@ -1,6 +1,6 @@
-package Data.Models;
+package data.models;
 
-import Data.Models.enums.Colour;
+import data.models.enums.Colour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,12 @@ public class GridElement {
 
     int wasGreenCounter = 0;
 
+    /**
+     * @param row
+     * @param column
+     * @param colour
+     * @param neighbours
+     */
     public GridElement(int row, int column, int colour, List<Integer> neighbours) {
         setRow(row);
         setColumn(column);
@@ -32,31 +38,52 @@ public class GridElement {
         setNeighbours(neighbours);
     }
 
+    /**
+     * @return
+     */
     public int getRow() {
         return this.row;
     }
 
+    /**
+     * @param row
+     */
     public void setRow(int row) {
         this.row = row;
     }
 
+    /**
+     * @return
+     */
     public int getColumn() {
         return this.column;
     }
 
+    /**
+     * @param column
+     */
     public void setColumn(int column) {
         this.column = column;
     }
 
+    /**
+     * @return
+     */
     public Colour getColour() {
         return this.colour;
     }
 
 
+    /**
+     * @param colour
+     */
     public void setColour(Colour colour) {
         this.colour = colour;
     }
 
+    /**
+     * @param colour
+     */
     public void elementAddColour(int colour) {
         if (colour == 0) {
             setColour(Colour.RED);
@@ -65,18 +92,30 @@ public class GridElement {
         }
     }
 
+    /**
+     * @return
+     */
     public List<Integer> getNeighbours() {
         return this.neighbours;
     }
 
+    /**
+     * @param neighbours
+     */
     public void setNeighbours(List<Integer> neighbours) {
         this.neighbours = neighbours;
     }
 
+    /**
+     * @return
+     */
     public int getWasGreenCounter() {
         return this.wasGreenCounter;
     }
 
+    /**
+     * @param wasGreenCounter
+     */
     public void setWasGreenCounter(int wasGreenCounter) {
         this.wasGreenCounter = wasGreenCounter;
     }

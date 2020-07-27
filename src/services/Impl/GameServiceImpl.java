@@ -1,11 +1,11 @@
-package Services.Impl;
+package services.Impl;
 
-import Data.Models.Grid;
-import Data.Models.GridElement;
-import Data.Models.enums.Colour;
-import Data.Repository.GridElementsRepository;
-import Services.GameService;
-import Utility.Validation.ConsoleInputReader;
+import data.models.Grid;
+import data.models.GridElement;
+import data.models.enums.Colour;
+import data.repository.GridElementsRepository;
+import services.GameService;
+import data.utility.validation.ConsoleInputReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,26 +16,16 @@ public class GameServiceImpl implements GameService {
 
     /**
      * @author Yordan Petrov
-     * @run
-     *
-     * @updateElementsNeighbours
-     *
+     * @run Start the Program.
+     * @updateElementsNeighbours Method that updates
      * @applyRulesToTheGrid
-     *
      * @getElementAtPositionColour
-     *
      * @getNeighbours
-     *
      * @applyRules
-     *
      * @greenCellRules
-     *
      * @redCellRules
-     *
      * @printResult
-     *
      * @getElementAtRowColumnFromElementList
-     *
      * @makeGridElements
      */
 
@@ -67,10 +57,14 @@ public class GameServiceImpl implements GameService {
             updateElementsNeighbours(gridElementList, grid);
             generationCounter--;
         }
-        printResult(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1],inputResultCellAndGenerationsToPass[0], gridElementList));
+        printResult(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1], inputResultCellAndGenerationsToPass[0], gridElementList));
         //----------------------Game main loop-------------------------
     }
 
+    /**
+     * @param gridElementList
+     * @param grid
+     */
     private void updateElementsNeighbours(List<GridElement> gridElementList, Grid grid) {
         //Update NEIGHBOURS OF the  Elements
         // ITERATES TROUGH THE ARRAY
@@ -84,6 +78,10 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     * @param gridElementList
+     * @param grid
+     */
     private void applyRulesToTheGrid(List<GridElement> gridElementList, Grid grid) {
         for (int i = 0; i < grid.getTheGrid().length; i++) {
             for (int j = 0; j < grid.getTheGrid()[i].length; j++) {
@@ -92,10 +90,22 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     * @param array
+     * @param i
+     * @param j
+     * @return
+     */
     private static int getElementAtPositionColour(int[][] array, int i, int j) {
         return array[i][j];
     }
 
+    /**
+     * @param array
+     * @param i
+     * @param j
+     * @return
+     */
     public static List<Integer> getNeighbours(int[][] array, int i, int j) {
         //Gets All neighbouring numbers around the index
         List<Integer> neighboursList = new ArrayList<>();
@@ -112,6 +122,10 @@ public class GameServiceImpl implements GameService {
         return neighboursList;
     }
 
+    /**
+     * @param array
+     * @param gridElement
+     */
     private static void applyRules(int[][] array, GridElement gridElement) {
         List<Integer> neighbours = gridElement.getNeighbours();
         //Counter for for the number of green neighbours of the index
@@ -129,6 +143,11 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     * @param array
+     * @param gridElement
+     * @param greenCells
+     */
     private static void greenCellRules(int[][] array, GridElement gridElement, int greenCells) {
         //Remains Green(1);
         int incrementForTheGreenCounter = gridElement.getWasGreenCounter();
@@ -143,6 +162,11 @@ public class GameServiceImpl implements GameService {
     }
 
 
+    /**
+     * @param array
+     * @param gridElement
+     * @param greenCells
+     */
     private static void redCellRules(int[][] array, GridElement gridElement, int greenCells) {
         if (greenCells == 3 || greenCells == 6) {
             //Shifts colour from Red(0) to Green(1)
@@ -151,10 +175,19 @@ public class GameServiceImpl implements GameService {
         }
     }
 
+    /**
+     * @param gridElement
+     */
     private static void printResult(GridElement gridElement) {
         System.out.print(String.format("# expected result: %s", gridElement.getWasGreenCounter()));
     }
 
+    /**
+     * @param i
+     * @param j
+     * @param gridElementList
+     * @return
+     */
     private static GridElement getElementAtRowColumnFromElementList(int i, int j, List<GridElement> gridElementList) {
         int row = 0;
         int column = 0;
@@ -168,6 +201,10 @@ public class GameServiceImpl implements GameService {
         return null;
     }
 
+    /**
+     * @param array
+     * @return
+     */
     private static List<GridElement> makeGridElements(int[][] array) {
         List<GridElement> gridElementList = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
