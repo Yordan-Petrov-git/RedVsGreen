@@ -10,6 +10,11 @@ public class GridValidation {
         return isValid;
     }
 
+    //TODO VALIDATE IF THE grid is valid x and y ("^\d+,\s\d+$")
 
-    //TODO VALIDATE IF THE GRID VALUES RE BETWEEN 0 AND 1
+
+    //TODO VALIDATE IF THE GRID VALUES RE BETWEEN 0 AND 1 ("^[0,1]+$")
+
+
+    //TODO VALIDATE IF THE result element and generations are correct  ("^\d+,\s+\d+,\s+\d+$")
 }

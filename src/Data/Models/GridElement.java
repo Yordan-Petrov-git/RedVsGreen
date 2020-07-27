@@ -15,9 +15,6 @@ public class GridElement {
 
     int wasGreenCounter = 0;
 
-    public GridElement() {
-    }
-
     public GridElement(int row, int column, int colour, List<Integer> neighbours) {
         setRow(row);
         setColumn(column);
