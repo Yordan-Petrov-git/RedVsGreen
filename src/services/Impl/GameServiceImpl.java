@@ -27,33 +27,40 @@ public class GameServiceImpl extends Constants implements GameService {
     @Override
     public void run() throws IOException {
 
-        //----------------------Get the input-----------------------------
+        //----------------------Get the input----------------------------------------------------------
         ConsoleInputReader consoleInputReader = new ConsoleInputReader();
         int[] inputWidthAndHeight = consoleInputReader.readTheSizeOfTheGrid();
-        int[][] inputArray = consoleInputReader.readTheTheGrid(inputWidthAndHeight[0], inputWidthAndHeight[1]);
-        int[] inputResultCellAndGenerationsToPass = consoleInputReader.readCoordinatesOfTheElementAndGenerationsToIterate();
+        int[][] inputArray
+                = consoleInputReader.readTheTheGrid(inputWidthAndHeight[0], inputWidthAndHeight[1]);
+        int[] inputResultCellAndGenerationsToPass
+                = consoleInputReader.readCoordinatesOfTheElementAndGenerationsToIterate();
         //----------------------Get the input-----------------------------
 
-        //----------------------Create grid element Repository-------------------
-        GridElementsRepository gridElementsRepository = new GridElementsRepository(makeGridElements(inputArray));
+        //----------------------Create grid element and load them into Element Repository-------------
+        GridElementsRepository gridElementsRepository
+                = new GridElementsRepository(makeGridElements(inputArray));
         List<GridElement> gridElementList = gridElementsRepository.getGridElementList();
-        //----------------------Create grid element Repository-------------------
+        //----------------------Create grid element Repository-----------------------------------------
 
-        //----------------------Create Grid-----------------------------
+        //----------------------Create Grid array------------------------------------------------------
         Grid grid = new Grid(inputWidthAndHeight[0], inputWidthAndHeight[1]);
         grid.setTheGrid(inputArray);
-        //----------------------Create Grid-----------------------------
+        //----------------------Create Grid------------------------------------------------------------
 
-        //----------------------Game main loop-------------------------
+        //----------------------Game main loop---------------------------------------------------------
+        //Counter for how many Generations to pass.
         int generationCounter = inputResultCellAndGenerationsToPass[2];
+
         while (generationCounter >= 0) {
+
             applyRulesToTheGrid(gridElementList, grid);
             updateElementsNeighbours(gridElementList, grid);
+
             generationCounter--;
         }
         printResult(Objects.requireNonNull(getElementAtRowColumnFromElementList(inputResultCellAndGenerationsToPass[1],
                 inputResultCellAndGenerationsToPass[0], gridElementList)));
-        //----------------------Game main loop-------------------------
+        //----------------------Game main loop----------------------------------------------------------
     }
 
     /**
@@ -165,8 +172,9 @@ public class GameServiceImpl extends Constants implements GameService {
         incrementForTheGreenCounter++;
         gridElement.setWasGreenCounter(incrementForTheGreenCounter);
 
-        if (numberOfGreenCellsNeighbours == 0 || numberOfGreenCellsNeighbours == 1 || numberOfGreenCellsNeighbours == 4
-                || numberOfGreenCellsNeighbours == 5 || numberOfGreenCellsNeighbours == 7 || numberOfGreenCellsNeighbours == 8) {
+        if (GREEN_CELL_NEIGHBOURS_COUNT_FOR_RULE_THREE.stream()
+                .anyMatch(n->
+                        n == numberOfGreenCellsNeighbours)) {
             //Shifts colour from Green(1) to Red(0) for the GridElement.
             gridElement.setColour(Colour.RED);
             //Shifting the Grid cell value.
@@ -184,7 +192,9 @@ public class GameServiceImpl extends Constants implements GameService {
      */
     private static void redCellRules(final int[][] arrayForTheGrid, final GridElement gridElement, final int numberOfGreenCellsNeighbours) {
         //Rules for when the cell is Red(0) for the GridElement.
-        if (numberOfGreenCellsNeighbours == 3 || numberOfGreenCellsNeighbours == 6) {
+        if (RED_CELL_NEIGHBOURS_COUNT_FOR_RULE_ONE.stream()
+                .anyMatch(n->
+                        n == numberOfGreenCellsNeighbours)) {
             //Shifts colour from Red(0) to Green(1)
             gridElement.setColour(Colour.GREEN);
             //Shifting the Grid cell value.
