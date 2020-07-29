@@ -1,4 +1,4 @@
-# GreenVsRed Game
+# RedVSGreen Game
 Red Vs Green M.M. DevCamp Task.
 
 Input example : 
