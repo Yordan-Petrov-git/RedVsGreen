@@ -29,7 +29,7 @@ public class GridValidation extends Constants {
             isValid = true;
         }
         if (!isValid) {
-            throw new InvalidMatrixDimension("Dimension of the matrix should be x <= y < 1000 ");
+            throw new InvalidMatrixDimension(INVALID_MATRIX_DIMENSIONS);
         }
         return isValid;
     }
@@ -45,8 +45,8 @@ public class GridValidation extends Constants {
 
         if (!arrayLengthChecker(arrayToBeChecked, WIDTH_AND_HEIGHT_OF_THE_GRID)) {
             isValid = false;
-            throw new InvalidMatrixDimension("Dimension of the matrix should be only two positive numbers");
-        } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
+            throw new InvalidMatrixDimension(INVALID_MATRIX_DIMENSIONS_PARAMETERS);
+        } else if (arrayRegExValidator(arrayToBeChecked, REGULAR_EXPRESSION_FOR_VALIDATION_OF_CONSOLE_INPUT)) {
             isValid = true;
         }
 
@@ -56,7 +56,7 @@ public class GridValidation extends Constants {
         }
 
         if (!isValid) {
-            throw new InvalidMatrixDimension("Dimension of the matrix should be coma separated positive numbers");
+            throw new InvalidMatrixDimension(INVALID_MATRIX_DIMENSION_VALUES);
         }
         return isValid;
     }
@@ -69,11 +69,11 @@ public class GridValidation extends Constants {
      */
     public boolean isTheInputGridValid(final String[] arrayToBeChecked) {
         boolean isValid = false;
-        if (arrayRegExValidator(arrayToBeChecked, "[0,1]")) {
+        if (arrayRegExValidator(arrayToBeChecked, REGULAR_EXPRESSION_FOR_VALIDATION_OF_THE_CELL)) {
             isValid = true;
         }
         if (!isValid) {
-            throw new InvalidConsoleInputException("Cells of the Grid should be only positive 1(Green) or 0(Red).");
+            throw new InvalidConsoleInputException(INVALID_MATRIX_CELL_PARAMETERS);
         }
         return isValid;
     }
@@ -92,14 +92,12 @@ public class GridValidation extends Constants {
 
         if (!arrayLengthChecker(arrayToBeChecked, ROW_CELL_AND_GENERATIONS_FOR_RESULT)) {
             isValid = false;
-            throw new InvalidMatrixDimension("Position of the Cell should be only two positive numbers"
-                    + " followed by the number of generations to pass.");
-        } else if (arrayRegExValidator(arrayToBeChecked, "\\d*")) {
+            throw new InvalidMatrixDimension(INVALID_CELL_POSITION_AND_GENERATIONS_PARAMETERS);
+        } else if (arrayRegExValidator(arrayToBeChecked, REGULAR_EXPRESSION_FOR_VALIDATION_OF_CONSOLE_INPUT)) {
             isValid = true;
         }
         if (!isValid) {
-            throw new InvalidConsoleInputException("Position of the Cell and number of Generations to"
-                    + " pass should be only positive numbers.");
+            throw new InvalidConsoleInputException(INVALID_CELL_POSITION_AND_GENERATIONS);
         }
         return isValid;
     }
