@@ -8,15 +8,15 @@ Each cell on this grid can be either green (represented by 1) or red (represente
 
 Rules that create the next generation:
 
-Each red cell that is surrounded by exacly 3 or exacly 6 green cells will also become green in the next generation.
-A red cell will stay red in the next generation if it has either 0, 1, 2, 4, 5, 7 or 8 green neighbours.
-Each green cell surrounded by 0, 1, 4, 5, 7 or 8 green neighbours will become red in the next generation.
-A green cell will stay green in the next generation if it has either 2, 3 or 6 green neighbours.
-Important facts:
+1.Each red cell that is surrounded by exacly 3 or exacly 6 green cells will also become green in the next generation.
+2.A red cell will stay red in the next generation if it has either 0, 1, 2, 4, 5, 7 or 8 green neighbours.
+3.Each green cell surrounded by 0, 1, 4, 5, 7 or 8 green neighbours will become red in the next generation.
+4.A green cell will stay green in the next generation if it has either 2, 3 or 6 green neighbours.
 
-Each cell can be surrounded by up to 8 cells, 4 on the sides and 4 on the corners.
-Exceptions are the corners and the sides of the grid.
-All of the 4 rules apply at the same time for the whole grid in order for the next generation to be formed.
+Important facts:
+1.Each cell can be surrounded by up to 8 cells, 4 on the sides and 4 on the corners.
+2.Exceptions are the corners and the sides of the grid.
+3.All of the 4 rules apply at the same time for the whole grid in order for the next generation to be formed.
 YOUR TASK:
 
 Create s program that accepts: The size of our grid - x, y (x being the width and y being the height). 
