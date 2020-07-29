@@ -1,9 +1,9 @@
 # GreenVsRed Game
-Green Vs Red M.M. Task.
+Red Vs Green M.M. DevCamp Task.
 
 Input example : 
 -------------------
-Works
+-Works
 3(rows), 3(columns)
 00(result(1)(0)(15Generations))0
 111
